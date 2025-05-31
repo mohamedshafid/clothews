@@ -1,7 +1,9 @@
 node_modules
 dist
 dist-ssr
-.vite
+uploads
+tmp
+cache
 .env
 .env.*
 .git
