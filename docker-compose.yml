@@ -1,0 +1,34 @@
+# version: '3.9'
+version: '3.9'
+
+# Docker Compose file for a Node.js backend and a React frontend with Nginx
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"  # Production port via Nginx
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      # DATABASE_URL: mongodb://mongo:27017/mydb (example)
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
