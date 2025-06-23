@@ -1,23 +1,18 @@
-# version: '3.9'
 version: "3.9"
-# Docker Compose file for a Node.js backend and a React frontend with Nginx
+
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: mohamedhafid825/clothews-frontend:latest  # ⬅️ Replace with your Docker Hub image
     container_name: frontend
     ports:
-      - "5173:5173" # Production port via Nginx
+      - "5173:5173"
     depends_on:
       - backend
     networks:
       - app-network
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: mohamedhafid825/clothews-backend:latest   # ⬅️ Replace with your Docker Hub image
     container_name: backend
     env_file: ./backend/.env
     ports:
